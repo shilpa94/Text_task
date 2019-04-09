@@ -1,0 +1,12 @@
+div{
+  margin:50px 50px; 
+}
+
+#text{
+  height: 125px;
+  width: 300px;
+  margin-top: 20px;
+}
+textarea{
+  min-width: 125px;
+}

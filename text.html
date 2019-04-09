@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+ </head> 
+
+ <body>
+  <div>
+  <input type="number" id="maxLength"><br>
+  <textarea type="text" id="text" onkeyup="javascript:showText();"></textarea> <br/>
+  <p id="textShow"></p>
+  </div>
+  
+
+  <script type="text/javascript">
+    function showText(){
+      var text = $("#text").val();
+      var maxLength = parseInt($("#maxLength").val());
+      var curr = maxLength;
+      var prev = 0;
+      var result = '';
+       
+      while(text[curr]){
+        if(text[curr++] == ' ') {
+          result+=text.substring(prev,curr)+'\n';
+          prev = curr;
+          curr += maxLength;
+        }
+        else
+          {
+            var currReverse = curr;
+            do {
+                if(text.substring(currReverse - 1, currReverse) == ' ')
+                {
+                    result+=text.substring(prev,currReverse)+'\n';
+                    prev = currReverse;
+                    curr = currReverse + maxLength;
+                    
+                }
+                currReverse--;
+            } while(currReverse > prev)
+          }
+      }  
+      result+=text.substr(prev);
+      var res = result.replace(/\n/g, "<br>");
+      $("#textShow").html(res);
+    }
+  </script>
+</body>
+</html>
