@@ -21,6 +21,9 @@
       var curr = maxLength;
       var prev = 0;
       var result = '';
+      var impossible = '';
+      var check = 0;
+      var space_count = 0;
        
       while(text[curr]){
         if(text[curr++] == ' ') {
@@ -31,7 +34,12 @@
         else
           {
             var currReverse = curr;
+            impossible = text.substring(prev,currReverse);
+            check = /\s/g.test(impossible);
+            if (check == false){space_count++;}
+            // console.log(check);
             do {
+                  
                 if(text.substring(currReverse - 1, currReverse) == ' ')
                 {
                     result+=text.substring(prev,currReverse)+'\n';
@@ -46,6 +54,9 @@
       result+=text.substr(prev);
       var res = result.replace(/\n/g, "<br>");
       $("#textShow").html(res);
+      if(space_count > 0){
+        $("#textShow").html("No result possible");
+      }
     }
   </script>
 </body>
